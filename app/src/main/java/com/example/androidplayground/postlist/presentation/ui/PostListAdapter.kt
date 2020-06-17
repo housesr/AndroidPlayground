@@ -1,4 +1,4 @@
-package com.example.androidplayground.postlist.presentation
+package com.example.androidplayground.postlist.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.ItemPostBinding
 import com.example.androidplayground.postlist.data.model.Post
 
-class PostListAdapter : ListAdapter<Post, PostListAdapter.PostItemViewHolder>(PostItemCallback()) {
+class PostListAdapter : ListAdapter<Post, PostListAdapter.PostItemViewHolder>(
+    PostItemCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostItemViewHolder {
         return ItemPostBinding.inflate(

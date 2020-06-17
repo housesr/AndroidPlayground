@@ -6,5 +6,5 @@
 
     <fragment
         android:id="@+id/postListFragment"
-        android:name="com.example.androidplayground.postlist.presentation.PostListFragment" />
+        android:name="com.example.androidplayground.postlist.presentation.ui.PostListFragment" />
 </navigation>
