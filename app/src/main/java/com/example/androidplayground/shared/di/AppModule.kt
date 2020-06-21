@@ -1,7 +1,6 @@
 package com.example.androidplayground.shared.di
 
 import com.example.androidplayground.BuildConfig
-import com.example.androidplayground.postlist.data.service.PostService
 import com.example.androidplayground.postlist.domain.GetPostList
 import com.example.androidplayground.postlist.presentation.viewmodel.PostListViewModel
 import okhttp3.OkHttpClient
@@ -10,7 +9,6 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 val appModule = module {
@@ -39,8 +37,6 @@ val appModule = module {
             .client(get())
             .build()
     }
-
-    single<PostService> { get<Retrofit>().create() }
 
     single { GetPostList(get()) }
 
