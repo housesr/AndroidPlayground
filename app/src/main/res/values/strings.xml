@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AndroidPlayground</string>
+
     <string name="title_post_list">POST LIST</string>
+
+    <string name="msg_empty">Not found</string>
 </resources>

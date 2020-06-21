@@ -1,8 +1,8 @@
-package com.example.androidplayground.core.di
+package com.example.androidplayground.shared.di
 
 import com.example.androidplayground.BuildConfig
-import com.example.androidplayground.postlist.data.repository.PostListRepository
-import com.example.androidplayground.postlist.data.repository.PostService
+import com.example.androidplayground.postlist.data.service.PostService
+import com.example.androidplayground.postlist.domain.GetPostList
 import com.example.androidplayground.postlist.presentation.viewmodel.PostListViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -42,7 +42,7 @@ val appModule = module {
 
     single<PostService> { get<Retrofit>().create() }
 
-    single { PostListRepository(get()) }
+    single { GetPostList(get()) }
 
     viewModel { PostListViewModel(get()) }
 }

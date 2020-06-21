@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.FragmentPostListBinding
@@ -33,6 +35,18 @@ class PostListFragment : Fragment() {
         binding.recyclerView.apply {
             adapter = listAdapter
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+        }
+
+        viewModel.postList.observe(viewLifecycleOwner) {
+            listAdapter.submitList(it)
+        }
+
+        viewModel.showEmpty.observe(viewLifecycleOwner) {
+            binding.textViewEmpty.isVisible = it
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.progressBar.isVisible = it
         }
 
         viewModel.loadPostList()

@@ -1,7 +1,7 @@
 package com.example.androidplayground
 
 import android.app.Application
-import com.example.androidplayground.core.di.appModule
+import com.example.androidplayground.shared.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

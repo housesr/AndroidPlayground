@@ -1,4 +1,4 @@
-package com.example.androidplayground.postlist.data.repository
+package com.example.androidplayground.postlist.data.service
 
 import com.example.androidplayground.postlist.data.model.Post
 import retrofit2.http.GET
