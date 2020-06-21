@@ -42,6 +42,7 @@ class PostListFragment : Fragment() {
         }
 
         viewModel.showEmpty.observe(viewLifecycleOwner) {
+            binding.recyclerView.isVisible = it.not()
             binding.textViewEmpty.isVisible = it
         }
 
