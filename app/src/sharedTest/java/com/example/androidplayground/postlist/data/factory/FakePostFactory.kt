@@ -1,11 +1,10 @@
-package com.example.androidplayground.postlist.data.service
+package com.example.androidplayground.postlist.data.factory
 
 import com.example.androidplayground.postlist.data.model.Post
 
-// TODO("Move to shared test")
-class FakePostService : PostService {
+object FakePostFactory {
 
-    override suspend fun getPosts(page: Int): List<Post> {
+    fun createPostList(): List<Post> {
         return listOf(
             Post(1, 1, "title", "body"),
             Post(1, 2, "title2", "body2")
