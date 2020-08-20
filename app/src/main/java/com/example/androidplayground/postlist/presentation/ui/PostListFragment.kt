@@ -6,18 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.FragmentPostListBinding
 import com.example.androidplayground.postlist.presentation.viewmodel.PostListViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PostListFragment : Fragment() {
 
     private lateinit var binding: FragmentPostListBinding
 
-    private val viewModel: PostListViewModel by viewModel()
+    private val viewModel: PostListViewModel by viewModels()
     private val listAdapter: PostListAdapter by lazy { PostListAdapter() }
 
     override fun onCreateView(

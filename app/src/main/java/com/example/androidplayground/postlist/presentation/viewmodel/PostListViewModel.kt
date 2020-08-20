@@ -1,5 +1,6 @@
 package com.example.androidplayground.postlist.presentation.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -10,7 +11,7 @@ import com.example.androidplayground.shared.model.getOrDefault
 import com.example.androidplayground.shared.presentation.BaseViewModel
 import kotlinx.coroutines.launch
 
-class PostListViewModel(
+class PostListViewModel @ViewModelInject constructor(
     private val getPostList: GetPostList
 ) : BaseViewModel() {
 
