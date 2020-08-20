@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.ItemPostBinding
 import com.example.androidplayground.postlist.presentation.model.PostUiModel
+import com.example.androidplayground.shared.presentation.ViewBindingHolder
 
 typealias OnPostClickListener = (postUiModel: PostUiModel) -> Unit
 
@@ -29,8 +29,8 @@ class PostListAdapter(
     }
 
     inner class PostItemViewHolder(
-        private val binding: ItemPostBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+        binding: ItemPostBinding
+    ) : ViewBindingHolder<ItemPostBinding>(binding) {
 
         fun bind(postUiModel: PostUiModel) {
             binding.textViewTitle.text = postUiModel.title
