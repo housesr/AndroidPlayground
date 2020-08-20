@@ -6,10 +6,14 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.ItemPostBinding
-import com.example.androidplayground.postlist.data.model.Post
+import com.example.androidplayground.postlist.presentation.model.PostUiModel
 
-class PostListAdapter : PagingDataAdapter<Post, PostListAdapter.PostItemViewHolder>(
-    PostItemCallback()
+typealias OnPostClickListener = (postUiModel: PostUiModel) -> Unit
+
+class PostListAdapter(
+    private val onPostClickListener: OnPostClickListener
+) : PagingDataAdapter<PostUiModel, PostListAdapter.PostItemViewHolder>(
+    PostUiModelComparator()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostItemViewHolder {
@@ -28,20 +32,20 @@ class PostListAdapter : PagingDataAdapter<Post, PostListAdapter.PostItemViewHold
         private val binding: ItemPostBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(post: Post) {
-            binding.textViewTitle.text = post.title
-            binding.textViewBody.text = post.body
-            binding.root.setOnClickListener { }
+        fun bind(postUiModel: PostUiModel) {
+            binding.textViewTitle.text = postUiModel.title
+            binding.textViewBody.text = postUiModel.body
+            binding.root.setOnClickListener { onPostClickListener(postUiModel) }
         }
     }
 
-    class PostItemCallback : DiffUtil.ItemCallback<Post>() {
+    class PostUiModelComparator : DiffUtil.ItemCallback<PostUiModel>() {
 
-        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+        override fun areItemsTheSame(oldItem: PostUiModel, newItem: PostUiModel): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+        override fun areContentsTheSame(oldItem: PostUiModel, newItem: PostUiModel): Boolean {
             return oldItem == newItem
         }
     }

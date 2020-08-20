@@ -1,10 +1,10 @@
-package com.example.androidplayground.postlist.domain
+package com.example.androidplayground.postlist.domain.usecase
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.androidplayground.postlist.data.datasource.PostPagingSource
-import com.example.androidplayground.postlist.data.model.Post
+import com.example.androidplayground.postlist.domain.model.Post
 import com.example.androidplayground.shared.domain.PagingUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

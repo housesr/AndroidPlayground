@@ -20,7 +20,7 @@ import org.koin.core.inject
 import org.koin.test.KoinTest
 
 @RunWith(AndroidJUnit4::class)
-class PostListFragmentTest : KoinTest {
+class PostEntityListFragmentTest : KoinTest {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
