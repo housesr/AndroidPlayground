@@ -2,13 +2,13 @@ package com.example.androidplayground.postlist.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.ItemPostBinding
 import com.example.androidplayground.postlist.data.model.Post
 
-class PostListAdapter : ListAdapter<Post, PostListAdapter.PostItemViewHolder>(
+class PostListAdapter : PagingDataAdapter<Post, PostListAdapter.PostItemViewHolder>(
     PostItemCallback()
 ) {
 
@@ -21,7 +21,7 @@ class PostListAdapter : ListAdapter<Post, PostListAdapter.PostItemViewHolder>(
     }
 
     override fun onBindViewHolder(holder: PostItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class PostItemViewHolder(
