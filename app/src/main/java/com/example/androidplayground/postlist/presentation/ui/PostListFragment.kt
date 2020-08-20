@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -40,18 +39,7 @@ class PostListFragment : Fragment() {
         }
 
         viewModel.postList.observe(viewLifecycleOwner) {
-            listAdapter.submitList(it)
+            listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
-
-        viewModel.showEmpty.observe(viewLifecycleOwner) {
-            binding.recyclerView.isVisible = it.not()
-            binding.textViewEmpty.isVisible = it
-        }
-
-        viewModel.loading.observe(viewLifecycleOwner) {
-            binding.progressBar.isVisible = it
-        }
-
-        viewModel.loadPostList()
     }
 }

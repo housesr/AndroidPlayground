@@ -1,30 +1,22 @@
 package com.example.androidplayground.postlist.presentation.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
-import androidx.lifecycle.viewModelScope
-import com.example.androidplayground.postlist.data.model.Post
-import com.example.androidplayground.postlist.domain.GetPostList
-import com.example.androidplayground.shared.model.getOrDefault
+import androidx.lifecycle.asLiveData
+import androidx.paging.PagingConfig
+import com.example.androidplayground.postlist.domain.GetPaginatedPostList
 import com.example.androidplayground.shared.presentation.BaseViewModel
-import kotlinx.coroutines.launch
 
 class PostListViewModel @ViewModelInject constructor(
-    private val getPostList: GetPostList
+    getPaginatedPostList: GetPaginatedPostList
 ) : BaseViewModel() {
 
-    private val _postList = MutableLiveData<List<Post>>()
-    val postList: LiveData<List<Post>> = _postList
+    val postList = getPaginatedPostList.invoke(
+        GetPaginatedPostList.Parameters(
+            PagingConfig(PAGE_SIZE)
+        )
+    ).asLiveData()
 
-    val showEmpty: LiveData<Boolean> = _postList.map { it.isEmpty() }
-
-    fun loadPostList() {
-        viewModelScope.launch {
-            showLoading()
-            _postList.value = getPostList(1).getOrDefault(emptyList())
-            hideLoading()
-        }
+    companion object {
+        private const val PAGE_SIZE = 10
     }
 }
