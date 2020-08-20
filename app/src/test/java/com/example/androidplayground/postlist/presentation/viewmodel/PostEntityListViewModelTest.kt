@@ -18,7 +18,7 @@ import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
-class PostListViewModelTest : KoinTest {
+class PostEntityListViewModelTest : KoinTest {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()

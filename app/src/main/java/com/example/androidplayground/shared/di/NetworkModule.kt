@@ -1,6 +1,7 @@
 package com.example.androidplayground.shared.di
 
 import com.example.androidplayground.BuildConfig
+import com.example.androidplayground.commentlist.data.service.CommentService
 import com.example.androidplayground.postlist.data.service.PostService
 import dagger.Module
 import dagger.Provides
@@ -49,6 +50,12 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providePostService(retrofit: Retrofit): PostService {
+        return retrofit.create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentService(retrofit: Retrofit): CommentService {
         return retrofit.create()
     }
 }
