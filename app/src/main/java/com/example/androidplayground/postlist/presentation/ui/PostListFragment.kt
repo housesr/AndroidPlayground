@@ -1,33 +1,28 @@
 package com.example.androidplayground.postlist.presentation.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidplayground.R
 import com.example.androidplayground.databinding.FragmentPostListBinding
+import com.example.androidplayground.postlist.presentation.model.PostUiModel
 import com.example.androidplayground.postlist.presentation.viewmodel.PostListViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import com.example.androidplayground.shared.binding.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class PostListFragment : Fragment() {
+@AndroidEntryPoint
+class PostListFragment : Fragment(R.layout.fragment_post_list) {
 
-    private lateinit var binding: FragmentPostListBinding
+    private val binding: FragmentPostListBinding by viewBinding(FragmentPostListBinding::bind)
 
-    private val viewModel: PostListViewModel by viewModel()
-    private val listAdapter: PostListAdapter by lazy { PostListAdapter() }
+    private val viewModel: PostListViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPostListBinding.inflate(inflater)
-        return binding.root
-    }
+    private val listAdapter: PostListAdapter by lazy { PostListAdapter(onPostClickListener) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,18 +33,17 @@ class PostListFragment : Fragment() {
         }
 
         viewModel.postList.observe(viewLifecycleOwner) {
-            listAdapter.submitList(it)
+            listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
+    }
 
-        viewModel.showEmpty.observe(viewLifecycleOwner) {
-            binding.recyclerView.isVisible = it.not()
-            binding.textViewEmpty.isVisible = it
+    private val onPostClickListener = object : OnPostClickListener {
+        override fun invoke(postUiModel: PostUiModel) {
+            findNavController().navigate(
+                PostListFragmentDirections.actionPostListFragmentToCommentListFragment(
+                    postUiModel
+                )
+            )
         }
-
-        viewModel.loading.observe(viewLifecycleOwner) {
-            binding.progressBar.isVisible = it
-        }
-
-        viewModel.loadPostList()
     }
 }
