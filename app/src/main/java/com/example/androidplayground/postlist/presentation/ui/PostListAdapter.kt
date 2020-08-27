@@ -2,14 +2,18 @@ package com.example.androidplayground.postlist.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.databinding.ItemPostBinding
-import com.example.androidplayground.postlist.data.model.Post
+import com.example.androidplayground.postlist.presentation.model.PostUiModel
+import com.example.androidplayground.shared.presentation.ViewBindingHolder
 
-class PostListAdapter : ListAdapter<Post, PostListAdapter.PostItemViewHolder>(
-    PostItemCallback()
+typealias OnPostClickListener = (postUiModel: PostUiModel) -> Unit
+
+class PostListAdapter(
+    private val onPostClickListener: OnPostClickListener
+) : PagingDataAdapter<PostUiModel, PostListAdapter.PostItemViewHolder>(
+    PostUiModelComparator()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostItemViewHolder {
@@ -21,27 +25,27 @@ class PostListAdapter : ListAdapter<Post, PostListAdapter.PostItemViewHolder>(
     }
 
     override fun onBindViewHolder(holder: PostItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class PostItemViewHolder(
-        private val binding: ItemPostBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+        binding: ItemPostBinding
+    ) : ViewBindingHolder<ItemPostBinding>(binding) {
 
-        fun bind(post: Post) {
-            binding.textViewTitle.text = post.title
-            binding.textViewBody.text = post.body
-            binding.root.setOnClickListener { }
+        fun bind(postUiModel: PostUiModel) {
+            binding.textViewTitle.text = postUiModel.title
+            binding.textViewBody.text = postUiModel.body
+            binding.root.setOnClickListener { onPostClickListener(postUiModel) }
         }
     }
 
-    class PostItemCallback : DiffUtil.ItemCallback<Post>() {
+    class PostUiModelComparator : DiffUtil.ItemCallback<PostUiModel>() {
 
-        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+        override fun areItemsTheSame(oldItem: PostUiModel, newItem: PostUiModel): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+        override fun areContentsTheSame(oldItem: PostUiModel, newItem: PostUiModel): Boolean {
             return oldItem == newItem
         }
     }

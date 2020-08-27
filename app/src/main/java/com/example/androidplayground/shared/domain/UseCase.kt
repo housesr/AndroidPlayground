@@ -1,22 +1,22 @@
 package com.example.androidplayground.shared.domain
 
-import com.example.androidplayground.shared.model.Error
-import com.example.androidplayground.shared.model.Result
-import com.example.androidplayground.shared.model.Success
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
+import com.github.michaelbull.result.Result
 import timber.log.Timber
 
 abstract class UseCase<in P, R> {
 
-    suspend operator fun invoke(parameters: P): Result<R> {
+    suspend operator fun invoke(parameters: P): Result<R, Exception> {
         return try {
-            Success(
+            Ok(
                 execute(parameters)
             )
         } catch (e: Exception) {
             Timber.d(e)
-            Error(e)
+            Err(e)
         }
     }
 
-    abstract suspend fun execute(parameters: P): R
+    protected abstract suspend fun execute(parameters: P): R
 }

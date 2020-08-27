@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/postListFragment">
 
     <fragment
         android:id="@+id/postListFragment"
-        android:name="com.example.androidplayground.postlist.presentation.ui.PostListFragment" />
+        android:name="com.example.androidplayground.postlist.presentation.ui.PostListFragment">
+        <action
+            android:id="@+id/action_postListFragment_to_commentListFragment"
+            app:destination="@id/commentListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/commentListFragment"
+        android:name="com.example.androidplayground.commentlist.presentation.ui.CommentListFragment"
+        android:label="fragment_comment_list"
+        tools:layout="@layout/fragment_comment_list">
+        <argument
+            android:name="postUiModel"
+            app:argType="com.example.androidplayground.postlist.presentation.model.PostUiModel" />
+    </fragment>
 </navigation>
