@@ -3,6 +3,7 @@ package com.example.androidplayground.shared.di
 import com.example.androidplayground.BuildConfig
 import com.example.androidplayground.commentlist.data.service.CommentService
 import com.example.androidplayground.postlist.data.service.PostService
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,10 +40,10 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
     }
