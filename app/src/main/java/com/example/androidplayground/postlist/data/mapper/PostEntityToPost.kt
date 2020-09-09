@@ -10,10 +10,10 @@ class PostEntityToPost @Inject constructor() : Mapper<PostEntity, Post> {
     override suspend fun map(input: PostEntity): Post =
         input.run {
             Post(
-                userId!!,
-                id!!,
-                title ?: "",
-                body ?: ""
+                userId = userId!!,
+                id = id!!,
+                title = title ?: "",
+                body = body ?: ""
             )
         }
 }
