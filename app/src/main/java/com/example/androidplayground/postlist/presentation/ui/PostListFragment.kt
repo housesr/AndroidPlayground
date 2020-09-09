@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidplayground.R
 import com.example.androidplayground.databinding.FragmentPostListBinding
-import com.example.androidplayground.postlist.presentation.model.PostUiModel
 import com.example.androidplayground.postlist.presentation.viewmodel.PostListViewModel
 import com.example.androidplayground.shared.binding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,13 +36,11 @@ class PostListFragment : Fragment(R.layout.fragment_post_list) {
         }
     }
 
-    private val onPostClickListener = object : OnPostClickListener {
-        override fun invoke(postUiModel: PostUiModel) {
-            findNavController().navigate(
-                PostListFragmentDirections.actionPostListFragmentToCommentListFragment(
-                    postUiModel
-                )
+    private val onPostClickListener: OnPostClickListener = { postUiModel ->
+        findNavController().navigate(
+            PostListFragmentDirections.actionPostListFragmentToCommentListFragment(
+                postUiModel
             )
-        }
+        )
     }
 }
