@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.firebase.appdistribution'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     signingConfigs {
@@ -36,6 +38,25 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        development {
+            dimension "environment"
+            applicationIdSuffix ".dev"
+            firebaseAppDistribution {
+                releaseNotesFile="/release-notes.txt"
+                groups="Development"
+            }
+        }
+        production {
+            dimension "environment"
+            firebaseAppDistribution {
+                releaseNotesFile="/release-notes.txt"
+                groups="Production"
+            }
         }
     }
 

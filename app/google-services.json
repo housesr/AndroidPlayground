@@ -36,9 +36,67 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:139413935310:android:497e6691343054de612c9f",
+        "mobilesdk_app_id": "1:139413935310:android:5d0aab314b286d36612c9f",
         "android_client_info": {
-          "package_name": "com.example.androidplayground.debug"
+          "package_name": "com.example.androidplayground.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139413935310-5plpttv1jsotc348inmoh1odpin80vb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIQ0H7OW912aX5JYzKNe6dbm8_C_IZszc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139413935310-5plpttv1jsotc348inmoh1odpin80vb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139413935310:android:471b675794de81cc612c9f",
+        "android_client_info": {
+          "package_name": "com.example.androidplayground.dev.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139413935310-5plpttv1jsotc348inmoh1odpin80vb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIQ0H7OW912aX5JYzKNe6dbm8_C_IZszc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139413935310-5plpttv1jsotc348inmoh1odpin80vb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139413935310:android:5387b19dcb283e6b612c9f",
+        "android_client_info": {
+          "package_name": "com.example.androidplayground.prod.debug"
         }
       },
       "oauth_client": [
