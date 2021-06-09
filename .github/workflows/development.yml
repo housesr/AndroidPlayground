@@ -34,5 +34,6 @@ jobs:
       with:
         appId: ${{secrets.FIREBASE_APP_ID_DEVELOPMENT}}
         token: ${{secrets.FIREBASE_TOKEN}}
+        releaseNotesFile: release-notes.txt
         groups: Development
         file: app/build/outputs/apk/development/release/app-development-release.apk
