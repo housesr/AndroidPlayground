@@ -47,14 +47,14 @@ android {
             dimension "environment"
             applicationIdSuffix ".dev"
             firebaseAppDistribution {
-                releaseNotesFile="/release-notes.txt"
+                releaseNotesFile="../release-notes.txt"
                 groups="Development"
             }
         }
         production {
             dimension "environment"
             firebaseAppDistribution {
-                releaseNotesFile="/release-notes.txt"
+                releaseNotesFile="../release-notes.txt"
                 groups="Production"
             }
         }
