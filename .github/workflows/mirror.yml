@@ -3,7 +3,7 @@ name: Push to Bitbucket
 on:
   push:
     branches:
-      - release
+      - 'release/**'
 
 jobs:
   push-to-bitbucket:
