@@ -1,0 +1,18 @@
+name: Push to Bitbucket
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  push-to-bitbucket:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            git@bitbucket.org:housesr/cicd.git
+          ssh_private_key:
+            ${{ secrets.BITBUCKET_SSH_PRIVATE_KEY }}
